@@ -19,9 +19,11 @@ export async function getServerSideProps(context) {
       }
     }
   }
-  const markers = await fetch("http://localhost:3000/api/markers")
+  const markers = await fetch(`http://localhost:3000/api/markers/${session.user.email}`)
     .then((data) => {
-      return data.json()
+      if (data) {
+        return data.json()
+      }
     })
     .then((data) => {
       return data.result
@@ -30,20 +32,19 @@ export async function getServerSideProps(context) {
   return {
     props: {
       session,
-      markers
+      markers,
     }
   }
 }
 
-export default function MapPage({markers}) {
+export default function MapPage({ markers }) {
+  
+  const {data: session} = useSession()
   const router = useRouter();
 
   // const { data: session } = useSession();
   const [marker, setMarker] = useState();
   // const [markers, setMarkers] = useState();
-
-
-  console.log(markers)
 
   return (
     <Layout>

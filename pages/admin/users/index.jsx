@@ -32,11 +32,10 @@ export async function getServerSideProps(context) {
 const AdminUsers = ({ users }) => {
   const router = useRouter();
 
-  console.log(users);
   return (
     <Layout>
-      <table className=" mx-auto text-center w-11/12 mt-5 border-separate border-spacing-y-2">
-        <thead className="bg-blue-400 text-white">
+      <table className=" mx-auto text-center w-11/12 mt-5 border-separate border-spacing-y-2 border-spacing-x-1">
+        <thead className="rounded-l-md bg-blue-400 text-white">
           <tr>
             <th className="rounded-l-md">ID</th>
             <th>Email</th>
@@ -48,6 +47,7 @@ const AdminUsers = ({ users }) => {
           {users &&
             users.map((user) => (
               <tr
+                key={user.id}
                 onClick={() => router.push(`/admin/users/${user.id}`)}
                 className="bg-purple-100 my-5 transition-all hover:cursor-pointer hover:bg-purple-20 hover:shadow-sm"
               >

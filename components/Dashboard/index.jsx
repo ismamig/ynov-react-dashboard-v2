@@ -1,8 +1,10 @@
+import BarChart from "../Charts/bar";
+
 export default function Dashboard() {
 
   return (
     <>
-      Dashboard
+      <BarChart/>
     </>
   )
 }
